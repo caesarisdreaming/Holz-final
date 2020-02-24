@@ -12,7 +12,18 @@ public class RightHoles : MonoBehaviour
     {
         startTime = Time.realtimeSinceStartup;
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        { //android back button
+            if (score.score > PlayerPrefs.GetInt("highScore", 0))
+            {
+                PlayerPrefs.SetInt("highScore", (int)score.score);
+            }
+            score.score = 0;
+            SceneController.LoadFirstScene();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "HoleDetector")
@@ -34,7 +45,7 @@ public class RightHoles : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         if ((scene.buildIndex < SceneManager.sceneCountInBuildSettings-1)) {//if this isn't the last Scene
-            SceneManager.LoadScene(scene.buildIndex + 1);//switch to next scene
+            SceneController.LoadNextScene();
         }
         else//if this is the last scene
         {
@@ -49,6 +60,6 @@ public class RightHoles : MonoBehaviour
     }
     private void LoadSceneDelayer()
     {
-        SceneManager.LoadScene("StartMenu");
+        SceneController.LoadFirstScene();
     }
 }

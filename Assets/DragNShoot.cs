@@ -49,6 +49,10 @@ public class DragNShoot : MonoBehaviour
                     Tl.EndLine();
                     break;
             }
+
+            //Vector3 touchPosition = cam.ScreenToWorldPoint(touch.position);
+            //touchPosition.z = 10f;
+            //transform.position = touchPosition;
         }
     }
 }
