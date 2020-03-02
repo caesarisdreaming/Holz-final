@@ -18,8 +18,13 @@ public class GolfEffect : MonoBehaviour
         float distance = Vector2.Distance(this.transform.position, player.transform.position);
         if(distance < golfEffectRadius)
         {
+            //Vector3 direction = transform.position - player.transform.position;
+            //playerRB.AddForce(direction * forceMultiplier * 1/distance);
             Vector3 direction = transform.position - player.transform.position;
-            playerRB.AddForce(direction * forceMultiplier * 1/distance);
+            
+            float angleinBetween = Vector2.Angle((Vector2)playerRB.velocity, (Vector2)direction);
+            float directionMultiplier = angleinBetween > 90 ? 1f+ ((angleinBetween-90)/90): 1; //scale from 1 to 2 so pull ball harder when it's going away
+            playerRB.AddForce(direction * forceMultiplier * 1/distance * directionMultiplier);
         }
     }
     private void OnDrawGizmos()
