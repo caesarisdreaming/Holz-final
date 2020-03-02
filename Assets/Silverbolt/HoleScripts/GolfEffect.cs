@@ -23,7 +23,8 @@ public class GolfEffect : MonoBehaviour
             Vector3 direction = transform.position - player.transform.position;
             
             float angleinBetween = Vector2.Angle((Vector2)playerRB.velocity, (Vector2)direction);
-            float directionMultiplier = angleinBetween > 90 ? 1f+ ((angleinBetween-90)/90): 1; //scale from 1 to 2 so pull ball harder when it's going away
+            float directionMultiplier = 1f+ (angleinBetween/180); //scale from 1 to 2 so pull ball harder when it's going away
+
             playerRB.AddForce(direction * forceMultiplier * 1/distance * directionMultiplier);
         }
     }
