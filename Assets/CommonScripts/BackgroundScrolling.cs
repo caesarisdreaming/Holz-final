@@ -8,13 +8,8 @@ public class BackgroundScrolling : MonoBehaviour
     public float bgSpeed;
 
     public Renderer bgRend;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    // Just scrolling the background
     void Update()
     {
         bgRend.material.mainTextureOffset += new Vector2(0f, bgSpeed * Time.deltaTime);
